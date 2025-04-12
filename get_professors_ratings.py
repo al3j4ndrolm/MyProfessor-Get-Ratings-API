@@ -11,11 +11,11 @@ def get_professor_info():
     if not name:
         return jsonify({'error': 'Missing professor name'}), 400
 
-    # Construct the RateMyProfessors search URL (adjust to your college ID)
-    base_search_url = "https://www.ratemyprofessors.com/search/professors/282?q="  # 282 = De Anza College
+
+    base_search_url = "https://www.ratemyprofessors.com/search/professors/1967?q="
     search_url = base_search_url + quote_plus(name)
 
-    # Use your existing code
+
     data = get_professor_info(search_url)
     
     if not data:
