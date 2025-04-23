@@ -33,6 +33,18 @@ professor_ratings = {
 def get_professor_info(url):
     rmp_soup = parse_url(url)
     if rmp_soup:
+
+        hdr = rmp_soup.select_one('div[data-testid="search-results-header"]')
+        no_prof_div = hdr.find('div')
+        message = no_prof_div.get_text(" ", strip=True)
+
+        if "No professors" in message:
+            professor_ratings["would_take_again"] = "N/A"
+            professor_ratings["difficulty"] = "N/A"
+            professor_ratings["overall_rating"] = "N/A"
+            professor_ratings["ratings_quantity"] = "N/A"
+            return professor_ratings
+            
         professor_data = rmp_soup.find_all("a")[1]
         get_overall_rating(professor_data)
         get_difficulty_and_would_take_again(professor_data)
