@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import gunicorn
 from flask import Flask, request, jsonify
 from urllib.parse import quote_plus
 
@@ -81,6 +82,6 @@ def parse_url(url):
         print("Failed to fetch:", response.status_code)
         return None
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+# if __name__ == '__main__':
+#     app.run(host="0.0.0.0", port=5000)
 
